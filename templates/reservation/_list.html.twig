@@ -1,0 +1,55 @@
+<div>
+    {% for reservation in reservations %}
+        <div class="reservation-entry">
+            <div class="reservation-body">
+                <h5 class="reservation-title">{{ reservation.title }}</h5>
+                <div class="reservation-info">
+                    <div class="reservation-detail">
+                        <dl>Description:</dl>
+                        <dt>{{ reservation.description|default('No description provided') }}</dt>
+                    </div>
+                    <div class="reservation-detail">
+                        <dl>Start:</dl>
+                        <dt>{{ reservation.startDatetime ? reservation.startDatetime|date('d. m. Y H:i:s') : 'Not specified' }}</dt>
+                    </div>
+                    <div class="reservation-detail">
+                        <dl>End:</dl>
+                        <dt>{{ reservation.endDatetime ? reservation.endDatetime|date('d. m. Y H:i:s') : 'Not specified' }}</dt>
+                    </div>
+                    <div class="reservation-detail">
+                        <dl>Room:</dl>
+                        <dt>{{ reservation.room.codeName }}</dt>
+                    </div>
+                    <div class="reservation-detail">
+                        <dl>Status:</dl>
+                        <dt class="reservation-status {{ reservation.status|lower }}">
+                            {{ reservation.status }}
+                        </dt>
+                    </div>
+                    <div class="reservation-detail">
+                        <dl>Reserved for:</dl>
+                        <dt>{{ reservation.reservedFor.username }}</dt>
+                    </div>
+                </div>
+                <div class="reservation-actions">
+                    {% if is_granted('room_detail_view', reservation.room) %}
+                        <a href="{{ path('app_room_reservation_show', {'id': reservation.id, 'roomId': reservation.room.id}) }}" class="action-link">Show</a>
+                    {% endif %}
+                    {% if is_granted('reservation_edit', reservation) %}
+                        <a href="{{ path('app_room_reservation_edit', {'id': reservation.id, 'roomId': reservation.room.id}) }}" class="action-link">Edit</a>
+                    {% endif %}
+                    {% if reservation.status == 'pending' and is_granted('reservation_can_approve', reservation) %}
+                        {% include 'reservation/_approve.html.twig' %}
+                    {% endif %}
+                    {% if reservation.status == 'pending' and is_granted('reservation_can_reject', reservation) %}
+                        {% include 'reservation/_reject.html.twig' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <ul class="list-item">
+            <li class="tag-item"> No reservations found.</li>
+        </ul>
+    {% endfor %}
+</div>

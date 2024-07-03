@@ -1,0 +1,66 @@
+vendor/
+
+# Logs and temp files
+/app.log
+/php.log
+*.log
+
+# Symfony directories
+/var/
+/vendor/
+/node_modules/
+/public/bundles/
+
+# Build directories
+/build/
+/.cache/
+/coverage/
+/web/js/
+/web/css/
+/web/bundles/
+/web/uploads/
+/web/uploads/*
+/web/media/cache/
+/web/media/cache/*
+
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.php
+
+# Environment variables
+.env.local
+.env.local.php
+.env.*.local
+.env
+
+# IDE and editor files
+/.idea/
+/*.iml
+/.vscode/
+/nbproject/
+/*.sublime-project
+/*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Composer
+/vendor/
+/composer.phar
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# Node
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+
+# Miscellaneous
+*.bak
+*.tmp
+*.swp
+*.swo
+*~

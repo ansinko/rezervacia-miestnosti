@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservations for {{ room.codeName }}{% endblock %}
+
+{% block body %}
+    <section class="heading-section">
+        <h1>Reservations for {{ room.codeName }}</h1>
+        {% if is_granted('reservation_create', room) %}
+            <a href="{{ path('app_room_reservation_new', { roomId: room.id }) }}" class="action-link">Create new reservation</a>
+        {% endif %}
+    </section>
+    <h2>My reservations</h2>
+    {{ include('reservation/_list.html.twig', { reservations: userReservations }) }}
+
+    {% if allReservations != null and is_granted('room_can_view_full_reservations', room) %}
+        <h2>All reservations</h2>
+        {{ include('reservation/_list.html.twig', { reservations: allReservations }) }}
+    {% endif %}
+{% endblock %}

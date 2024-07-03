@@ -1,0 +1,10 @@
+<ul>
+    {% for group in groups %}
+        <li>
+            <a href="{{ path('app_group_show', {'id': group.id}) }}">{{ group.name }}</a>
+        </li>
+    {% endfor %}
+    {% if groups|length == 0 %}
+        <li>No groups found</li>
+    {% endif %}
+</ul>

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Group{% endblock %}
+
+{% block body %}
+    {% if is_granted('group_index_view') %}
+        <a href="{{ path('app_group_index') }}" class="back-link">back to list</a>
+    {% endif %}
+    <h1>Create new Group</h1>
+
+    {{ include('group/_form.html.twig') }}
+{% endblock %}

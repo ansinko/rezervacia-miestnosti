@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/error.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="error-page">
+        {% block error_content %}{% endblock %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All reservations{% endblock %}
+
+{% block body %}
+    <h1>All reservations</h1>
+    {{ include('reservation/_list.html.twig', {reservations: reservations} ) }}
+{% endblock %}
